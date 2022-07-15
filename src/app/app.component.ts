@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import {AppService} from './app.service'
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'api-service';
+  testData = {}
+  constructor(private apiService:AppService){
+  this.apiService.getData().subscribe((data)=>{
+  this.testData = data
+  })
+ }
 }
