@@ -9,14 +9,15 @@ import {AppService} from '../app.service'
 export class LoginComponent implements OnInit {
 
   postDataVar = {
-    title: 'foo',
-    body: 'update',
-    userId: 1,
+    titletg: 'foo',
+    bodydb: 'update',
+    userIdd: 1,
     id: 101 
   }
   resData = {}
   updateData={}
   deleteData ={}
+  serverError =''
   constructor(private apiService:AppService) { }
 
   ngOnInit(): void {
@@ -24,6 +25,9 @@ export class LoginComponent implements OnInit {
   apiCall(){
     this.apiService.postData(this.postDataVar).subscribe((data)=>{
   this.resData = data
+    },(error)=>{
+      console.log(error)
+      this.serverError = error
     })
   }
 
@@ -31,13 +35,19 @@ export class LoginComponent implements OnInit {
     this.apiService.updateData(this.postDataVar).subscribe((data)=>{
   this.updateData = data
   console.log(data)
+    },(error)=>{
+      console.log(error)
+      this.serverError = error
     })
   }
   deleteApiCall(){
    this.apiService.deleteData().subscribe((data)=>{
     console.log(data)
     this.deleteData = data
-   })
+   },(error)=>{
+    console.log(error)
+    this.serverError = error
+  })
   }
-
+ 
 }

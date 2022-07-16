@@ -8,6 +8,8 @@ import {AppService} from './app.service'
 export class AppComponent {
   title = 'api-service';
   testData = {}
+  test = ''
+  
   constructor(private apiService:AppService){
   this.apiService.getData().subscribe((data)=>{
   this.testData = data
